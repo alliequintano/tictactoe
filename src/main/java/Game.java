@@ -5,14 +5,12 @@ import java.io.PrintStream;
  */
 public class Game {
     private Board board;
-    private PrintStream out;
 
-    public Game(Board board, PrintStream out) {
+    public Game(Board board) {
         this.board = board;
-        this.out = out;
     }
 
     public void play() {
-        out.println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        board.printBoard();
     }
 }
