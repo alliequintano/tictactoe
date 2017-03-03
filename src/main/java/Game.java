@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -5,12 +6,15 @@ import java.io.PrintStream;
  */
 public class Game {
     private Board board;
+    private Player player;
 
-    public Game(Board board) {
+    public Game(Board board, Player player) {
         this.board = board;
+        this.player = player;
     }
 
-    public void play() {
+    public void play() throws IOException {
         board.printBoard();
+        player.makeMove();
     }
 }
