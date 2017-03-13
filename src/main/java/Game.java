@@ -15,6 +15,6 @@ public class Game {
 
     public void play() throws IOException {
         board.printBoard();
-        board = player.makeMove(board);
+        player.makeMove(board);
     }
 }

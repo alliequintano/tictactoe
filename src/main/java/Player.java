@@ -14,12 +14,13 @@ public class Player {
         this.in = in;
     }
 
-    public Board makeMove(Board board) throws IOException {
+    public void makeMove(Board board) throws IOException {
         out.println("Select position on board: ");
         String move = in.readLine();
 
         String updatedCells = board.addPlayerSymbolToBoard(move);
+        Board updatedBoard = new Board(out, updatedCells);
 
-        return new Board(out, updatedCells);
+        updatedBoard.printBoard();
     }
 }
