@@ -21,12 +21,11 @@ public class PlayerTest {
         board = mock(Board.class);
         out = mock(PrintStream.class);
         in = mock(BufferedReader.class);
+        player = new Player(out, in, "X");
     }
 
     @Test
     public void shouldPromptUserToMakeMove() throws IOException {
-        Player player = new Player(out, in, "X");
-
         player.makeMove(board);
 
         verify(out).println("Select position on board: ");
@@ -34,7 +33,6 @@ public class PlayerTest {
 
     @Test
     public void shouldTakeFirstPlayerInputToMakeMove() throws IOException {
-        Player player = new Player(out, in, "X");
         when(in.readLine()).thenReturn("1");
 
         player.makeMove(board);
