@@ -8,19 +8,23 @@ import java.io.PrintStream;
 public class Player {
     private PrintStream out;
     private BufferedReader in;
+    private String symbol;
 
-    public Player(PrintStream out, BufferedReader in) {
+    public Player(PrintStream out, BufferedReader in, String symbol) {
         this.out = out;
         this.in = in;
+        this.symbol = symbol;
     }
 
-    public void makeMove(Board board) throws IOException {
+    public Board makeMove(Board board) throws IOException {
         out.println("Select position on board: ");
         String move = in.readLine();
 
-        String updatedCells = board.addPlayerSymbolToBoard(move);
+        String updatedCells = board.addPlayerSymbolToBoard(move, symbol);
         Board updatedBoard = new Board(out, updatedCells);
 
         updatedBoard.printBoard();
+
+        return updatedBoard;
     }
 }

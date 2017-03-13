@@ -32,13 +32,15 @@ public class BoardTest {
 
     @Test
     public void shouldAddMoveToBoardByMarkingMoveWithSymbol() {
-        cells = board.addPlayerSymbolToBoard("3");
+        cells = board.addPlayerSymbolToBoard("3", "X");
 
         assertThat(cells, is("1|2|X\n-----\n4|5|6\n-----\n7|8|9"));
     }
 
     @Test
-    public void shouldMakeMoveWithPlayerSymbol() {
+    public void shouldMakeMoveWithSecondPlayerSymbol() {
+        cells = board.addPlayerSymbolToBoard("5", "O");
 
+        assertThat(cells, is("1|2|3\n-----\n4|O|6\n-----\n7|8|9"));
     }
 }

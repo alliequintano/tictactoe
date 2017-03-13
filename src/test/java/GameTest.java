@@ -2,10 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.io.PrintStream;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by alexandraquintano on 3/3/17.
@@ -19,7 +19,7 @@ public class GameTest {
     public void setUp() {
         board = mock(Board.class);
         player = mock(Player.class);
-        game = new Game(board, player);
+        game = new Game(board, player, player);
     }
 
     @Test
@@ -29,8 +29,20 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPromptPlayerForMove() throws IOException {
+    public void shouldHavePlayer1MakeMove() throws IOException {
         game.play();
         verify(player).makeMove(board);
+    }
+
+    @Test
+    public void shouldHavePlayer2MakeMoveAfterPlayer1() throws IOException {
+        Player player2 = mock(Player.class);
+        Board board2 = mock(Board.class);
+        Game game = new Game(board, player, player2);
+        when(player.makeMove(board)).thenReturn(board2);
+
+        game.play();
+
+        verify(player2).makeMove(board2);
     }
 }

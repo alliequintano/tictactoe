@@ -1,20 +1,22 @@
 import java.io.IOException;
-import java.io.PrintStream;
 
 /**
  * Created by alexandraquintano on 3/3/17.
  */
 public class Game {
     private Board board;
-    private Player player;
+    private Player player1;
+    private Player player2;
 
-    public Game(Board board, Player player) {
+    public Game(Board board, Player player1, Player player2) {
         this.board = board;
-        this.player = player;
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     public void play() throws IOException {
         board.printBoard();
-        player.makeMove(board);
+        board = player1.makeMove(board);
+        board = player2.makeMove(board);
     }
 }

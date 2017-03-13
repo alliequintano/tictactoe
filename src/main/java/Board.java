@@ -16,8 +16,8 @@ public class Board {
         out.println(cells);
     }
 
-    public String addPlayerSymbolToBoard(String move) {
-        String updatedCells = cells.replace(move, "X");
+    public String addPlayerSymbolToBoard(String move, String symbol) {
+        String updatedCells = cells.replace(move, symbol);
         return updatedCells;
     }
 }
