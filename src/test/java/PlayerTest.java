@@ -36,6 +36,6 @@ public class PlayerTest {
         when(in.readLine()).thenReturn("1");
         player.makeMove(board);
 
-        verify(board).addToBoard("1");
+        verify(board).addPlayerSymbolToBoard("1");
     }
 }

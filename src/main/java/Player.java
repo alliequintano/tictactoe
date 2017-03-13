@@ -18,6 +18,8 @@ public class Player {
         out.println("Select position on board: ");
         String move = in.readLine();
 
-        return board.addToBoard(move);
+        String updatedCells = board.addPlayerSymbolToBoard(move);
+
+        return new Board(out, updatedCells);
     }
 }

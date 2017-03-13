@@ -5,7 +5,7 @@ import java.io.PrintStream;
  */
 public class Board {
     private PrintStream out;
-    private String cells;
+    private final String cells;
 
     public Board(PrintStream out, String cells) {
         this.out = out;
@@ -16,7 +16,8 @@ public class Board {
         out.println(cells);
     }
 
-    public Board addToBoard(String move) {
-        return new Board(out, cells.replace(move, "X"));
+    public String addPlayerSymbolToBoard(String move) {
+        String updatedCells = cells.replace(move, "X");
+        return updatedCells;
     }
 }
