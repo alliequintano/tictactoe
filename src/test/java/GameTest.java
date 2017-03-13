@@ -31,6 +31,6 @@ public class GameTest {
     @Test
     public void shouldPromptPlayerForMove() throws IOException {
         game.play();
-        verify(player).makeMove();
+        verify(player).makeMove(board);
     }
 }

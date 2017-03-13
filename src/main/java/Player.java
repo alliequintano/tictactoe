@@ -6,17 +6,18 @@ import java.io.PrintStream;
  * Created by alexandraquintano on 3/3/17.
  */
 public class Player {
-    private Board board;
     private PrintStream out;
+    private BufferedReader in;
 
-    public Player(Board board, PrintStream out) {
-
-        this.board = board;
+    public Player(PrintStream out, BufferedReader in) {
         this.out = out;
+        this.in = in;
     }
 
-    public void makeMove() throws IOException {
+    public Board makeMove(Board board) throws IOException {
         out.println("Select position on board: ");
+        String move = in.readLine();
 
+        return board.addToBoard(move);
     }
 }

@@ -5,13 +5,18 @@ import java.io.PrintStream;
  */
 public class Board {
     private PrintStream out;
+    private String cells;
 
-    public Board(PrintStream out) {
-
+    public Board(PrintStream out, String cells) {
         this.out = out;
+        this.cells = cells;
     }
 
     public void printBoard() {
-        out.println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        out.println(cells);
+    }
+
+    public Board addToBoard(String move) {
+        return new Board(out, cells.replace(move, "X"));
     }
 }
