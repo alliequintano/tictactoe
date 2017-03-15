@@ -32,7 +32,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldTakeFirstPlayerInputToMakeMove() throws IOException {
+    public void shouldTakePlayerInputToMakeMove() throws IOException {
         when(in.readLine()).thenReturn("1");
 
         player.makeMove(board);
@@ -40,13 +40,12 @@ public class PlayerTest {
         verify(board).addPlayerSymbolToBoard("1", "X");
     }
 
-    @Test
-    public void shouldTakeSecondPlayerInputToMakeMove() throws IOException {
-        Player player = new Player(out, in, "O");
-        when(in.readLine()).thenReturn("4");
-
-        player.makeMove(board);
-
-        verify(board).addPlayerSymbolToBoard("4", "O");
-    }
+//    @Test
+//    public void shouldPromptForNewMoveWhenMoveIsAlreadyTaken() throws IOException {
+//        when(board.addPlayerSymbolToBoard("5", "X")).thenReturn("");
+//
+//        player.makeMove(board);
+//
+//        verify(board).
+//    }
 }

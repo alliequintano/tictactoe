@@ -43,4 +43,12 @@ public class BoardTest {
 
         assertThat(cells, is("1|2|3\n-----\n4|O|6\n-----\n7|8|9"));
     }
+
+    @Test
+    public void shouldNotAddMoveWhenAlreadyTaken() {
+        board = new Board(out, "1|X|3\n-----\n4|5|6\n-----\n7|8|9");
+        cells = board.addPlayerSymbolToBoard("2", "O");
+
+        assertThat(cells, is("1|X|3\n-----\n4|5|6\n-----\n7|8|9"));
+    }
 }

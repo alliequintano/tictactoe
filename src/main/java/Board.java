@@ -17,6 +17,12 @@ public class Board {
     }
 
     public String addPlayerSymbolToBoard(String move, String symbol) {
-        return cells.replace(move, symbol);
+        if (!cellIsTaken(move))
+            return cells.replace(move, symbol);
+        return cells;
+    }
+
+    private boolean cellIsTaken(String move) {
+        return cells.indexOf(move) == -1;
     }
 }
