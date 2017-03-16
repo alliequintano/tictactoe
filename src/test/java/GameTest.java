@@ -13,13 +13,15 @@ import static org.mockito.Mockito.when;
 public class GameTest {
     Game game;
     Board board;
-    Player player;
+    Player player1;
+    Player player2;
 
     @Before
     public void setUp() {
         board = mock(Board.class);
-        player = mock(Player.class);
-        game = new Game(board, player, player);
+        player1 = mock(Player.class);
+        player2 = mock(Player.class);
+        game = new Game(board, player1, player2);
     }
 
     @Test
@@ -31,18 +33,13 @@ public class GameTest {
     @Test
     public void shouldHavePlayer1MakeMove() throws IOException {
         game.play();
-        verify(player).makeMove(board);
+        verify(player1).makeMove();
     }
 
     @Test
     public void shouldHavePlayer2MakeMoveAfterPlayer1() throws IOException {
-        Player player2 = mock(Player.class);
-        Board board2 = mock(Board.class);
-        Game game = new Game(board, player, player2);
-        when(player.makeMove(board)).thenReturn(board2);
-
         game.play();
 
-        verify(player2).makeMove(board2);
+        verify(player2).makeMove();
     }
 }

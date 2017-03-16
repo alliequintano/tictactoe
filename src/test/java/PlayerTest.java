@@ -21,12 +21,12 @@ public class PlayerTest {
         board = mock(Board.class);
         out = mock(PrintStream.class);
         in = mock(BufferedReader.class);
-        player = new Player(out, in, "X");
+        player = new Player(out, in, "X", board);
     }
 
     @Test
     public void shouldPromptUserToMakeMove() throws IOException {
-        player.makeMove(board);
+        player.makeMove();
 
         verify(out).println("Select position on board: ");
     }
@@ -35,7 +35,7 @@ public class PlayerTest {
     public void shouldTakePlayerInputToMakeMove() throws IOException {
         when(in.readLine()).thenReturn("1");
 
-        player.makeMove(board);
+        player.makeMove();
 
         verify(board).addPlayerSymbolToBoard("1", "X");
     }
@@ -44,7 +44,7 @@ public class PlayerTest {
 //    public void shouldPromptForNewMoveWhenMoveIsAlreadyTaken() throws IOException {
 //        when(board.addPlayerSymbolToBoard("5", "X")).thenReturn("");
 //
-//        player.makeMove(board);
+//        player1.makeMove(board);
 //
 //        verify(board).
 //    }

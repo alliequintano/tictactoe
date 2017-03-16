@@ -1,24 +1,27 @@
 import java.io.PrintStream;
+import java.util.List;
 
-/**
- * Created by alexandraquintano on 3/3/17.
- */
 public class Board {
     private PrintStream out;
-    private final String cells;
+    private List<String> cells;
 
-    public Board(PrintStream out, String cells) {
+    public Board(PrintStream out, List<String> cells) {
         this.out = out;
         this.cells = cells;
     }
 
     public void printBoard() {
-        out.println(cells);
+        String board = "";
+        for (int i = 0; i < cells.size(); i++) {
+            board += cells.get(i);
+        }
+        out.println(board);
     }
 
-    public String addPlayerSymbolToBoard(String move, String symbol) {
-        if (!cellIsTaken(move))
-            return cells.replace(move, symbol);
+    public List<String> addPlayerSymbolToBoard(String move, String symbol) {
+        if (!cellIsTaken(move)) {
+            cells.set(cells.indexOf(move), cells.get(cells.indexOf(move)).replace(move, symbol));
+        }
         return cells;
     }
 
