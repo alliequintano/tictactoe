@@ -23,9 +23,8 @@ public class Player {
         out.println("Select position on board: ");
         String move = in.readLine();
 
-        List<String> updatedCells = board.addPlayerSymbolToBoard(move, symbol);
-        Board updatedBoard = new Board(out, updatedCells);
+        board.addPlayerSymbolToBoard(move, symbol);
 
-        updatedBoard.printBoard();
+        board.printBoard();
     }
 }

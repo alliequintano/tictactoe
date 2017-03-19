@@ -19,8 +19,7 @@ public class BoardTest {
     @Before
     public void setup() {
         out = mock(PrintStream.class);
-        cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
-        board = new Board(out, cells);
+        board = new Board(out, new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9")));
     }
 
     @Test
@@ -32,26 +31,27 @@ public class BoardTest {
 
     @Test
     public void shouldAddMoveToBoardByMarkingMoveWithSymbol() {
-        int cellIndex = cells.indexOf("3");
-        cells = board.addPlayerSymbolToBoard("3", "X");
+        int cellIndex = board.cells().indexOf("3");
+        board.addPlayerSymbolToBoard("3", "X");
 
-        assertThat(cells.get(cellIndex), is("X"));
+        assertThat(board.cells().get(cellIndex), is("X"));
     }
 
     @Test
     public void shouldMakeMoveWithSecondPlayerSymbol() {
-        int cellIndex = cells.indexOf("5");
-        cells = board.addPlayerSymbolToBoard("5", "O");
+        int cellIndex = board.cells().indexOf("5");
+        board.addPlayerSymbolToBoard("5", "O");
 
-        assertThat(cells.get(cellIndex), is("O"));
+        assertThat(board.cells().get(cellIndex), is("O"));
     }
 
     @Test
     public void shouldNotAddMoveWhenAlreadyTaken() {
-        int cellIndex = cells.indexOf("2");
-        board = new Board(out, new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9")));
-        cells = board.addPlayerSymbolToBoard("2", "O");
+        int cellIndex = board.cells().indexOf("2");
 
-        assertThat(cells.get(cellIndex), is("X"));
+        board = new Board(out, new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9")));
+        board.addPlayerSymbolToBoard("2", "O");
+
+        assertThat(board.cells().get(cellIndex), is("X"));
     }
 }

@@ -10,6 +10,10 @@ public class Board {
         this.cells = cells;
     }
 
+    public List<String> cells() {
+        return cells;
+    }
+
     public void printBoard() {
         String board = "";
         for (int i = 0; i < cells.size(); i++) {
@@ -18,11 +22,10 @@ public class Board {
         out.println(board);
     }
 
-    public List<String> addPlayerSymbolToBoard(String move, String symbol) {
+    public void addPlayerSymbolToBoard(String move, String symbol) {
         if (!cellIsTaken(move)) {
             cells.set(cells.indexOf(move), cells.get(cells.indexOf(move)).replace(move, symbol));
         }
-        return cells;
     }
 
     private boolean cellIsTaken(String move) {
