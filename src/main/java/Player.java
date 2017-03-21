@@ -20,10 +20,19 @@ public class Player {
     }
 
     public void makeMove() throws IOException {
-        out.println("Select position on board: ");
-        String move = in.readLine();
+        String move;
+        boolean moveMade = false;
 
-        board.addPlayerSymbolToBoard(move, symbol);
+        while (!moveMade) {
+            out.println("Select position on board: ");
+            move = in.readLine();
+            if (!board.cells().contains(move)) {
+                out.println("Already taken.");
+            } else {
+                board.addPlayerSymbolToBoard(move, symbol);
+                moveMade = true;
+            }
+        }
 
         board.printBoard();
     }

@@ -4,6 +4,8 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
@@ -40,12 +42,14 @@ public class PlayerTest {
         verify(board).addPlayerSymbolToBoard("1", "X");
     }
 
-//    @Test
-//    public void shouldPromptForNewMoveWhenMoveIsAlreadyTaken() throws IOException {
-//        when(board.addPlayerSymbolToBoard("5", "X")).thenReturn("");
-//
-//        player1.makeMove(board);
-//
-//        verify(board).
-//    }
+    @Test
+    public void shouldPromptPlayerToMakeMoveAgainIfMoveIsTaken() throws IOException {
+        when(board.cells()).thenReturn(new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9")));
+        when(in.readLine()).thenReturn("2").thenReturn("3");
+
+        player.makeMove();
+
+        verify(out).println("Already taken.");
+    }
+
 }
