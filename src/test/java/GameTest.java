@@ -37,7 +37,13 @@ public class GameTest {
     @Test
     public void shouldHavePlayer2MakeMoveAfterPlayer1() throws IOException {
         game.play();
-
         verify(player2).makeMove();
+    }
+
+    @Test
+    public void shouldAlternatePlayerTurnsUntilGameIsOver() throws IOException {
+
+        game.play();
+//        verify(player1).makeMove(); how do verify this  . . . .
     }
 }

@@ -23,7 +23,7 @@ public class PlayerTest {
         board = mock(Board.class);
         out = mock(PrintStream.class);
         in = mock(BufferedReader.class);
-        player = new Player(out, in, "X", board);
+        player = new Player(out, in, "X", board, name);
     }
 
     @Test

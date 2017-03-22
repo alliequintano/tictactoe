@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.List;
 
 /**
  * Created by alexandraquintano on 3/3/17.
@@ -11,12 +10,14 @@ public class Player {
     private BufferedReader in;
     private String symbol;
     private Board board;
+    private String name;
 
-    public Player(PrintStream out, BufferedReader in, String symbol, Board board) {
+    public Player(PrintStream out, BufferedReader in, String symbol, Board board, String name) {
         this.out = out;
         this.in = in;
         this.symbol = symbol;
         this.board = board;
+        this.name = name;
     }
 
     public void makeMove() throws IOException {
@@ -24,7 +25,7 @@ public class Player {
         boolean moveMade = false;
 
         while (!moveMade) {
-            out.println("Select position on board: ");
+            out.println(this.name + " Select position on board: ");
             move = in.readLine();
             if (!board.cells().contains(move)) {
                 out.println("Already taken.");
