@@ -41,7 +41,7 @@ public class GameTest {
 
     @Test
     public void shouldHavePlayer2MakeMoveAfterPlayer1() throws IOException {
-        when(board.isFull()).thenReturn(false).thenReturn(true);
+        when(board.isFull()).thenReturn(false).thenReturn(false).thenReturn(true);
         game.play();
         verify(player2).makeMove();
     }

@@ -1,16 +1,14 @@
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Board {
     private PrintStream out;
-    private List<String> cells;
-    private List<String> initialCells;
+    private List<String> cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
 
-    public Board(PrintStream out, List<String> initialCells) {
+    public Board(PrintStream out) {
         this.out = out;
-        this.initialCells = initialCells;
-        cells = new ArrayList<String>(initialCells);
     }
 
     public List<String> cells() {
@@ -37,7 +35,7 @@ public class Board {
 
     public boolean isFull() {
         for (int i = 0; i < cells.size(); i++) {
-            if (cellIsNotTaken(initialCells.get(i))) return false;
+            if (cellIsNotTaken("" + i)) return false;
         }
         return true;
     }
