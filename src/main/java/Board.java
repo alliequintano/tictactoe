@@ -48,4 +48,13 @@ public class Board {
         }
         return false;
     }
+
+    public boolean hasThreeInAColumn() {
+        for (int i = 0; i <= 3; i = i+1) {
+            if (cells.get(i).equals(cells.get(i + 3)) && cells.get(i).equals(cells.get(i + 6))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

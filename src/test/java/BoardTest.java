@@ -76,4 +76,13 @@ public class BoardTest {
 
         assertThat(board.hasThreeInARow(), is(true));
     }
+
+    @Test
+    public void shouldCheckIfThreeOfSameSymbolInColumn() {
+        board.addPlayerSymbolToBoard("2", "o");
+        board.addPlayerSymbolToBoard("5", "o");
+        board.addPlayerSymbolToBoard("8", "o");
+
+        assertThat(board.hasThreeInAColumn(), is(true));
+    }
 }

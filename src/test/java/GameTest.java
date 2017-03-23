@@ -60,4 +60,12 @@ public class GameTest {
         game.play();
         verify(out).println("Player 1 Wins!");
     }
+
+    @Test
+    public void shouldPlayGameUntilBoardHasThreeInColumn() throws IOException {
+        when(board.hasThreeInAColumn()).thenReturn(true);
+        when(player1.name()).thenReturn("Player 2");
+        game.play();
+        verify(out).println("Player 2 Wins!");
+    }
 }
