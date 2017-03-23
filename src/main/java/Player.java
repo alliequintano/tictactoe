@@ -24,6 +24,8 @@ public class Player {
         String move;
         boolean moveMade = false;
 
+        board.printBoard();
+        
         while (!moveMade) {
             out.println(this.name + " Select position on board: ");
             move = in.readLine();
@@ -35,6 +37,5 @@ public class Player {
             }
         }
 
-        board.printBoard();
     }
 }

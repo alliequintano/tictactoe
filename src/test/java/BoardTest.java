@@ -54,4 +54,13 @@ public class BoardTest {
 
         assertThat(board.cells().get(cellIndex), is("X"));
     }
+
+    @Test
+    public void shouldCheckIfAllCellsAreTaken() {
+        board = new Board(out, new ArrayList<String>(Arrays.asList("1","2")));
+        board.addPlayerSymbolToBoard("1", "Z");
+        board.addPlayerSymbolToBoard("2", "P");
+
+        assertThat(board.isFull(), is(true));
+    }
 }
