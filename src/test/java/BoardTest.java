@@ -85,4 +85,13 @@ public class BoardTest {
 
         assertThat(board.hasThreeInAColumn(), is(true));
     }
+
+    @Test
+    public void shouldCheckIfThreeOfSameSymbolInDiagonal() {
+        board.addPlayerSymbolToBoard("3", "j");
+        board.addPlayerSymbolToBoard("5", "j");
+        board.addPlayerSymbolToBoard("7", "j");
+
+        assertThat(board.hasThreeInADiagonal(), is(true));
+    }
 }

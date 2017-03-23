@@ -41,7 +41,7 @@ public class Board {
     }
 
     public boolean hasThreeInARow() {
-        for (int i = 0; i < cells.size(); i = i+3) {
+        for (int i = 0; i < cells.size(); i = i + 3) {
             if (cells.get(i).equals(cells.get(i + 1)) && cells.get(i).equals(cells.get(i + 2))) {
                 return true;
             }
@@ -50,10 +50,18 @@ public class Board {
     }
 
     public boolean hasThreeInAColumn() {
-        for (int i = 0; i <= 3; i = i+1) {
+        for (int i = 0; i <= 3; i++) {
             if (cells.get(i).equals(cells.get(i + 3)) && cells.get(i).equals(cells.get(i + 6))) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean hasThreeInADiagonal() {
+        if ((cells.get(0).equals(cells.get(4)) && cells.get(0).equals(cells.get(8)))
+            || (cells.get(2).equals(cells.get(4)) && cells.get(2).equals(cells.get(6)))) {
+                return true;
         }
         return false;
     }
