@@ -55,7 +55,6 @@ public class BoardTest {
 
     @Test
     public void shouldCheckIfAllCellsAreTaken() {
-        board = new Board(out);
         board.addPlayerSymbolToBoard("1", "Z");
         board.addPlayerSymbolToBoard("2", "P");
         board.addPlayerSymbolToBoard("3", "P");
@@ -67,5 +66,14 @@ public class BoardTest {
         board.addPlayerSymbolToBoard("9", "P");
 
         assertThat(board.isFull(), is(true));
+    }
+
+    @Test
+    public void shouldCheckIfThreeOfSameSymbolsInARow() {
+        board.addPlayerSymbolToBoard("1", "o");
+        board.addPlayerSymbolToBoard("2", "o");
+        board.addPlayerSymbolToBoard("3", "o");
+
+        assertThat(board.hasThreeInARow(), is(true));
     }
 }

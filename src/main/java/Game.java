@@ -9,6 +9,8 @@ public class Game {
     private Player player1;
     private Player player2;
     private PrintStream out;
+    private String winnerMessage;
+    private Player currentPlayer;
 
     public Game(Board board, Player player1, Player player2, PrintStream out) {
         this.board = board;
@@ -18,15 +20,40 @@ public class Game {
     }
 
     public void play() throws IOException {
-        while (!board.isFull()) {
-            player1.makeMove();
+        do {
+            nextPlayer();
+            currentPlayer.makeMove();
+        } while (!gameIsOver());
 
-            if (!board.isFull()) {
-                player2.makeMove();
-            }
-        }
         board.printBoard();
-        out.println("Game is a draw.");
+        printWinnerMessage();
+    }
+
+    private boolean gameIsOver() {
+        if (board.hasThreeInARow()) {
+            winnerMessage = currentPlayer.name() + " Wins!";
+            return true;
+        }
+        else if (board.isFull()) {
+            winnerMessage = "Game is a draw.";
+            return true;
+        }
+        return false;
+    }
+
+    private void nextPlayer() {
+        if (currentPlayer == null) {
+            currentPlayer = player1;
+        }
+        else if (currentPlayer == player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
+    }
+
+    private void printWinnerMessage() {
+        out.println(winnerMessage);
     }
 
 }

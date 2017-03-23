@@ -34,9 +34,18 @@ public class Board {
     }
 
     public boolean isFull() {
-        for (int i = 0; i < cells.size(); i++) {
+        for (int i = 1; i <= cells.size(); i++) {
             if (cellIsNotTaken("" + i)) return false;
         }
         return true;
+    }
+
+    public boolean hasThreeInARow() {
+        for (int i = 0; i < cells.size(); i = i+3) {
+            if (cells.get(i).equals(cells.get(i + 1)) && cells.get(i).equals(cells.get(i + 2))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

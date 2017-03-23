@@ -52,4 +52,12 @@ public class GameTest {
         game.play();
         verify(out).println("Game is a draw.");
     }
+
+    @Test
+    public void shouldPlayGameUntilBoardHasThreeInARow() throws IOException {
+        when(board.hasThreeInARow()).thenReturn(true);
+        when(player1.name()).thenReturn("Player 1");
+        game.play();
+        verify(out).println("Player 1 Wins!");
+    }
 }

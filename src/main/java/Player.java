@@ -25,9 +25,9 @@ public class Player {
         boolean moveMade = false;
 
         board.printBoard();
-        
+
         while (!moveMade) {
-            out.println(this.name + " Select position on board: ");
+            out.println(name + " Select position on board: ");
             move = in.readLine();
             if (!board.cells().contains(move)) {
                 out.println("Already taken.");
@@ -36,6 +36,9 @@ public class Player {
                 moveMade = true;
             }
         }
+    }
 
+    public String name() {
+        return this.name;
     }
 }
