@@ -30,9 +30,10 @@ public class Game {
     }
 
     private boolean gameIsOver() {
-        if (board.hasThreeInARow()
+        boolean hasThreeInARow = board.hasThreeInARow()
                 || board.hasThreeInAColumn()
-                || board.hasThreeInADiagonal()) {
+                || board.hasThreeInADiagonal();
+        if (hasThreeInARow) {
                     winnerMessage = currentPlayer.name() + " Wins!";
                     return true;
         }

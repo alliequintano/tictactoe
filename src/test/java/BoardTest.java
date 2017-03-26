@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,14 +19,20 @@ public class BoardTest {
     @Before
     public void setup() {
         out = mock(PrintStream.class);
-        board = new Board(out);
+        cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
+        board = new Board(out, cells);
     }
 
     @Test
     public void shouldPrintBoard() {
         board.printBoard();
 
-        verify(out).println("123456789");
+        verify(out).println(
+                "1|2|3\n" +
+                "-----\n" +
+                "4|5|6\n" +
+                "-----\n" +
+                "7|8|9");
     }
 
     @Test

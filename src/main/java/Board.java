@@ -6,8 +6,7 @@ import java.util.List;
 public class Board {
     private PrintStream out;
     private List<String> cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
-
-    public Board(PrintStream out) {
+    public Board(PrintStream out, List<String> cells) {
         this.out = out;
     }
 
@@ -16,11 +15,11 @@ public class Board {
     }
 
     public void printBoard() {
-        String board = "";
-        for (int i = 0; i < cells.size(); i++) {
-            board += cells.get(i);
-        }
-        out.println(board);
+        out.println(cells.get(0) + "|" + cells.get(1) + "|" + cells.get(2)
+                    + "\n" + "-----\n" +
+                    cells.get(3) + "|" + cells.get(4) + "|" + cells.get(5)
+                    + "\n" + "-----\n" +
+                    cells.get(6) + "|" + cells.get(7) + "|" + cells.get(8));
     }
 
     public void addPlayerSymbolToBoard(String move, String symbol) {
