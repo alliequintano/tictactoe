@@ -1,5 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -10,11 +12,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class BoardTest {
-    PrintStream out;
-    List<String> cells;
-    Board board;
+    private PrintStream out;
+    private Board board;
+    private List<String> cells;
 
     @Before
     public void setup() {
@@ -26,7 +29,6 @@ public class BoardTest {
     @Test
     public void shouldPrintBoard() {
         board.printBoard();
-
         verify(out).println(
                 "1|2|3\n" +
                 "-----\n" +
@@ -37,69 +39,49 @@ public class BoardTest {
 
     @Test
     public void shouldAddMoveToBoardByMarkingMoveWithSymbol() {
-        int cellIndex = board.cells().indexOf("3");
         board.addPlayerSymbolToBoard("3", "X");
-
-        assertThat(board.cells().get(cellIndex), is("X"));
+        assertThat(cells.get(2), is("X"));
     }
 
     @Test
     public void shouldMakeMoveWithSecondPlayerSymbol() {
-        int cellIndex = board.cells().indexOf("5");
         board.addPlayerSymbolToBoard("5", "O");
-
-        assertThat(board.cells().get(cellIndex), is("O"));
+        assertThat(cells.get(4), is("O"));
     }
 
     @Test
     public void shouldNotAddMoveWhenAlreadyTaken() {
-        int cellIndex = board.cells().indexOf("2");
-
-        board.addPlayerSymbolToBoard("2", "X");
+        cells = new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9"));
+        board = new Board(out, cells);
         board.addPlayerSymbolToBoard("2", "O");
-
-        assertThat(board.cells().get(cellIndex), is("X"));
+        assertThat(cells.get(1), is("X"));
     }
 
     @Test
     public void shouldCheckIfAllCellsAreTaken() {
-        board.addPlayerSymbolToBoard("1", "Z");
-        board.addPlayerSymbolToBoard("2", "P");
-        board.addPlayerSymbolToBoard("3", "P");
-        board.addPlayerSymbolToBoard("4", "P");
-        board.addPlayerSymbolToBoard("5", "P");
-        board.addPlayerSymbolToBoard("6", "P");
-        board.addPlayerSymbolToBoard("7", "P");
-        board.addPlayerSymbolToBoard("8", "P");
-        board.addPlayerSymbolToBoard("9", "P");
-
+        cells = new ArrayList<String>(Arrays.asList("O","X","O","X","O","X","O","X","O"));
+        board = new Board(out, cells);
         assertThat(board.isFull(), is(true));
     }
 
     @Test
     public void shouldCheckIfThreeOfSameSymbolsInARow() {
-        board.addPlayerSymbolToBoard("1", "o");
-        board.addPlayerSymbolToBoard("2", "o");
-        board.addPlayerSymbolToBoard("3", "o");
-
+        cells = new ArrayList<String>(Arrays.asList("O","O","O","4","X","6","O","X","O"));
+        board = new Board(out, cells);
         assertThat(board.hasThreeInARow(), is(true));
     }
 
     @Test
     public void shouldCheckIfThreeOfSameSymbolInColumn() {
-        board.addPlayerSymbolToBoard("2", "o");
-        board.addPlayerSymbolToBoard("5", "o");
-        board.addPlayerSymbolToBoard("8", "o");
-
+        cells = new ArrayList<String>(Arrays.asList("1","X","3","4","X","6","7","X","9"));
+        board = new Board(out, cells);
         assertThat(board.hasThreeInAColumn(), is(true));
     }
 
     @Test
     public void shouldCheckIfThreeOfSameSymbolInDiagonal() {
-        board.addPlayerSymbolToBoard("3", "j");
-        board.addPlayerSymbolToBoard("5", "j");
-        board.addPlayerSymbolToBoard("7", "j");
-
+        cells = new ArrayList<String>(Arrays.asList("O","2","X","4","O","O","7","8","O"));
+        board = new Board(out, cells);
         assertThat(board.hasThreeInADiagonal(), is(true));
     }
 }

@@ -8,9 +8,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-//        TODO: REFACTOR BOARD TO TAKE CELLS AS PARAMETER, FIX TESTS, SHOULD HELP REMOVE CELLS GETTER
-//        FORMAT BOARD OUTPUT
-//        then if time, refactor isWinner in board class and remove the 3 calls from game
+//        TODO: refactor isWinner in board class and remove the 3 calls from game
 
         PrintStream out = new PrintStream(System.out);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

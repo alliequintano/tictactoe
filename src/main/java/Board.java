@@ -1,13 +1,13 @@
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Board {
     private PrintStream out;
-    private List<String> cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
+    private List<String> cells;
+
     public Board(PrintStream out, List<String> cells) {
         this.out = out;
+        this.cells = cells;
     }
 
     public List<String> cells() {
@@ -24,14 +24,16 @@ public class Board {
 
     public void addPlayerSymbolToBoard(String move, String symbol) {
         if (cellIsNotTaken(move)) {
-            cells.set(cells.indexOf(move), cells.get(cells.indexOf(move)).replace(move, symbol));
+            cells.set(cells.indexOf(move), symbol);
         }
+        printBoard();
     }
 
     private boolean cellIsNotTaken(String move) {
         return cells.indexOf(move) != -1;
     }
 
+    // very fragile, assuming all initial boards will be 1 - 9 
     public boolean isFull() {
         for (int i = 1; i <= cells.size(); i++) {
             if (cellIsNotTaken("" + i)) return false;

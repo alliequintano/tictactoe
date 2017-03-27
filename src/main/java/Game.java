@@ -17,12 +17,15 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.out = out;
+        currentPlayer = player1;
     }
 
     public void play() throws IOException {
+        board.printBoard();
+
         do {
-            nextPlayer();
             currentPlayer.makeMove();
+            nextPlayer();
         } while (!gameIsOver());
 
         board.printBoard();
@@ -45,10 +48,7 @@ public class Game {
     }
 
     private void nextPlayer() {
-        if (currentPlayer == null) {
-            currentPlayer = player1;
-        }
-        else if (currentPlayer == player1) {
+        if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;
