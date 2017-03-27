@@ -33,7 +33,7 @@ public class Board {
         return cells.indexOf(move) != -1;
     }
 
-    // very fragile, assuming all initial boards will be 1 - 9 
+    // very fragile, assuming all initial boards will be 1 - 9
     public boolean isFull() {
         for (int i = 1; i <= cells.size(); i++) {
             if (cellIsNotTaken("" + i)) return false;
@@ -65,5 +65,9 @@ public class Board {
                 return true;
         }
         return false;
+    }
+
+    public boolean hasWinner() {
+        return hasThreeInARow() || hasThreeInAColumn() || hasThreeInADiagonal();
     }
 }

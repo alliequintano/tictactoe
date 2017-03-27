@@ -28,17 +28,13 @@ public class Game {
             nextPlayer();
         } while (!gameIsOver());
 
-        board.printBoard();
         printWinnerMessage();
     }
 
     private boolean gameIsOver() {
-        boolean hasThreeInARow = board.hasThreeInARow()
-                || board.hasThreeInAColumn()
-                || board.hasThreeInADiagonal();
-        if (hasThreeInARow) {
-                    winnerMessage = currentPlayer.name() + " Wins!";
-                    return true;
+        if (board.hasWinner()) {
+            winnerMessage = "Player Wins!";
+            return true;
         }
         else if (board.isFull()) {
             winnerMessage = "Game is a draw.";

@@ -27,8 +27,7 @@ public class Player {
         while (!moveMade) {
             out.println(name + " Select position on board: ");
             move = in.readLine();
-//            if (!board.cells().contains(move)) {
-            if (false) {
+            if (!board.cells().contains(move)) {
                 out.println("Already taken.");
             } else {
                 board.addPlayerSymbolToBoard(move, symbol);

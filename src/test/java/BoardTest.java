@@ -84,4 +84,12 @@ public class BoardTest {
         board = new Board(out, cells);
         assertThat(board.hasThreeInADiagonal(), is(true));
     }
+
+    @Test
+    public void shouldCheckIfThereIsAWinner() {
+        cells = new ArrayList<String>(Arrays.asList("O","2","X","4","O","O","7","8","O"));
+        board = new Board(out, cells);
+
+        assertThat(board.hasWinner(), is(true));
+    }
 }

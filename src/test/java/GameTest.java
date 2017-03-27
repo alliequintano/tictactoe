@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -54,27 +55,10 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPlayGameUntilBoardHasThreeInARow() throws IOException {
-        when(board.hasThreeInARow()).thenReturn(true);
-        when(player1.name()).thenReturn("Player 1");
+    public void shouldPlayGameUntilBoardHasWinner() throws IOException {
+        when(board.hasWinner()).thenReturn(true);
         game.play();
-        verify(out).println("Player 1 Wins!");
-    }
-
-    @Test
-    public void shouldPlayGameUntilBoardHasThreeInColumn() throws IOException {
-        when(board.hasThreeInAColumn()).thenReturn(true);
-        when(player1.name()).thenReturn("Player 1");
-        game.play();
-        verify(out).println("Player 1 Wins!");
-    }
-
-    @Test
-    public void shouldPlayGameUntilBoardHasThreeInDiagonal() throws IOException {
-        when(board.hasThreeInADiagonal()).thenReturn(true);
-        when(player1.name()).thenReturn("Player 1");
-        game.play();
-        verify(out).println("Player 1 Wins!");
+        verify(out).println("Player Wins!");
     }
 
 }
