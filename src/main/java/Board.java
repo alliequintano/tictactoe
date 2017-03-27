@@ -10,10 +10,6 @@ public class Board {
         this.cells = cells;
     }
 
-    public List<String> cells() {
-        return cells;
-    }
-
     public void printBoard() {
         out.println(cells.get(0) + "|" + cells.get(1) + "|" + cells.get(2)
                     + "\n" + "-----\n" +
@@ -23,20 +19,18 @@ public class Board {
     }
 
     public void addPlayerSymbolToBoard(String move, String symbol) {
-        if (cellIsNotTaken(move)) {
-            cells.set(cells.indexOf(move), symbol);
-        }
+        cells.set(cells.indexOf(move), symbol);
         printBoard();
     }
 
-    private boolean cellIsNotTaken(String move) {
-        return cells.indexOf(move) != -1;
+    public boolean cellIsTaken(String move) {
+        return cells.indexOf(move) == -1;
     }
 
     // very fragile, assuming all initial boards will be 1 - 9
     public boolean isFull() {
         for (int i = 1; i <= cells.size(); i++) {
-            if (cellIsNotTaken("" + i)) return false;
+            if (!cellIsTaken("" + i)) return false;
         }
         return true;
     }

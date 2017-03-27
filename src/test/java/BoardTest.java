@@ -1,8 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +9,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class BoardTest {
     private PrintStream out;
@@ -47,14 +43,6 @@ public class BoardTest {
     public void shouldMakeMoveWithSecondPlayerSymbol() {
         board.addPlayerSymbolToBoard("5", "O");
         assertThat(cells.get(4), is("O"));
-    }
-
-    @Test
-    public void shouldNotAddMoveWhenAlreadyTaken() {
-        cells = new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9"));
-        board = new Board(out, cells);
-        board.addPlayerSymbolToBoard("2", "O");
-        assertThat(cells.get(1), is("X"));
     }
 
     @Test

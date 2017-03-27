@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
@@ -36,7 +32,6 @@ public class PlayerTest {
 
     @Test
     public void shouldPromptUserToMakeMove() throws IOException {
-        when(board.cells()).thenReturn(cells);
         when(in.readLine()).thenReturn("1");
 
         player.makeMove();
@@ -46,7 +41,6 @@ public class PlayerTest {
 
     @Test
     public void shouldTakePlayerInputToMakeMove() throws IOException {
-        when(board.cells()).thenReturn(cells);
         when(in.readLine()).thenReturn("1");
 
         player.makeMove();
@@ -56,12 +50,13 @@ public class PlayerTest {
 
     @Test
     public void shouldPromptPlayerToMakeMoveAgainIfMoveIsTaken() throws IOException {
-        when(board.cells()).thenReturn(new ArrayList<String>(Arrays.asList("1","X","3","4","5","6","7","8","9")));
+        when(board.cellIsTaken("2")).thenReturn(true);
+        when(board.cellIsTaken("3")).thenReturn(false);
         when(in.readLine()).thenReturn("2").thenReturn("3");
 
         player.makeMove();
 
-        verify(out).println("Already taken.");
+        verify(out).println("Already taken. Enter a different move: ");
     }
 
 }

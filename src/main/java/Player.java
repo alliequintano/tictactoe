@@ -22,18 +22,15 @@ public class Player {
 
     public void makeMove() throws IOException {
         String move;
-        boolean moveMade = false;
+        out.println(name + " Select position on board: ");
+        move = in.readLine();
 
-        while (!moveMade) {
-            out.println(name + " Select position on board: ");
+        while (board.cellIsTaken(move)) {
+            out.println("Already taken. Enter a different move: ");
             move = in.readLine();
-            if (!board.cells().contains(move)) {
-                out.println("Already taken.");
-            } else {
-                board.addPlayerSymbolToBoard(move, symbol);
-                moveMade = true;
-            }
         }
+
+        board.addPlayerSymbolToBoard(move, symbol);
     }
 
     public String name() {

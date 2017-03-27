@@ -8,8 +8,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-//        TODO: remove cells() getter from board (breaks player class)
-//          TODO: fix regression for printing player winner
+//  TODO: fix regression for printing player winner
 
         PrintStream out = new PrintStream(System.out);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
