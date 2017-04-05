@@ -54,10 +54,11 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPlayGameUntilBoardHasWinner() throws IOException {
+    public void shouldPlayGameUntilBoardHasWinner() {
         when(board.hasWinner()).thenReturn(true);
+        when(board.isFull()).thenReturn(false);
         game.play();
-        verify(out).println("Player Wins!");
+        verify(player1).printPlayerWonMessage();
     }
 
 }

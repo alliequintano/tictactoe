@@ -20,20 +20,28 @@ public class Player {
         this.name = name;
     }
 
-    public void makeMove() throws IOException {
-        String move;
+    public void makeMove() {
         out.println(name + " Select position on board: ");
-        move = in.readLine();
-
+        String move = readLine();
         while (board.cellIsTaken(move)) {
             out.println("Already taken. Enter a different move: ");
-            move = in.readLine();
+            move = readLine();
         }
 
         board.addPlayerSymbolToBoard(move, symbol);
     }
 
-    public String name() {
-        return this.name;
+    private String readLine() {
+        String string = "";
+        try {
+            string = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return string;
+    }
+
+    public void printPlayerWonMessage() {
+        out.println(name + " Wins!");
     }
 }

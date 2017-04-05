@@ -20,7 +20,7 @@ public class Game {
         currentPlayer = player1;
     }
 
-    public void play() throws IOException {
+    public void play() {
         board.printBoard();
 
         do {
@@ -32,15 +32,7 @@ public class Game {
     }
 
     private boolean gameIsOver() {
-        if (board.hasWinner()) {
-            winnerMessage = "Player Wins!";
-            return true;
-        }
-        else if (board.isFull()) {
-            winnerMessage = "Game is a draw.";
-            return true;
-        }
-        return false;
+        return board.hasWinner() || board.isFull();
     }
 
     private void nextPlayer() {
@@ -52,7 +44,16 @@ public class Game {
     }
 
     private void printWinnerMessage() {
-        out.println(winnerMessage);
+        if (board.isFull()) {
+            out.println("Game is a draw.");
+        } else {
+            // this should be simpler
+            if (currentPlayer == player1) {
+                player2.printPlayerWonMessage();
+            } else {
+                player1.printPlayerWonMessage();
+            }
+        }
     }
 
 }

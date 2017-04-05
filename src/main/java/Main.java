@@ -8,8 +8,6 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-//  TODO: fix regression for printing player winner
-
         PrintStream out = new PrintStream(System.out);
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         List<String> cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));

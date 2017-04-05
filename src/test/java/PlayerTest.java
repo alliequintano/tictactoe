@@ -1,4 +1,3 @@
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +25,7 @@ public class PlayerTest {
         board = mock(Board.class);
         out = mock(PrintStream.class);
         in = mock(BufferedReader.class);
-        cells = new ArrayList<String>(Arrays.asList("1"));
+        cells = new ArrayList<String>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
         player = new Player(out, in, "X", board, "Player1");
     }
 
@@ -57,6 +56,13 @@ public class PlayerTest {
         player.makeMove();
 
         verify(out).println("Already taken. Enter a different move: ");
+    }
+
+    @Test
+    public void shouldPrintPlayerWonMessage() {
+        player.printPlayerWonMessage();
+
+        verify(out).println("Player1 Wins!");
     }
 
 }
