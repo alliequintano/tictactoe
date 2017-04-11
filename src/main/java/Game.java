@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -9,7 +8,6 @@ public class Game {
     private Player player1;
     private Player player2;
     private PrintStream out;
-    private String winnerMessage;
     private Player currentPlayer;
 
     public Game(Board board, Player player1, Player player2, PrintStream out) {

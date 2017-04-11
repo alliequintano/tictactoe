@@ -12,15 +12,15 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     Game game;
     Board board;
-    Player player1;
-    Player player2;
+    Human player1;
+    Human player2;
     PrintStream out;
 
     @Before
     public void setUp() {
         board = mock(Board.class);
-        player1 = mock(Player.class);
-        player2 = mock(Player.class);
+        player1 = mock(Human.class);
+        player2 = mock(Human.class);
         out = mock(PrintStream.class);
         game = new Game(board, player1, player2, out);
     }
@@ -60,5 +60,6 @@ public class GameTest {
         game.play();
         verify(player1).printPlayerWonMessage();
     }
+
 
 }
